@@ -31,7 +31,8 @@ import { AccessRestrictionsNode } from '@/components/nodes/AccessRestrictionsNod
 import { DiscordWebhooksNode } from '@/components/nodes/DiscordWebhooksNode';
 import { BallCustomizationNode } from '@/components/nodes/BallCustomizationNode';
 import { SecurityNode } from '@/components/nodes/SecurityNode';
-import { useScriptTemplate } from '@/hooks/use-configurations';
+import { BASE_TEMPLATE } from '@/lib/baseTemplate';
+import { useConfigurations } from '@/hooks/use-configurations';
 
 // Initial state for different node types
 const initialNodeValues = {
@@ -160,7 +161,6 @@ export default function EditorPage() {
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
   
   // Script generation state
-  const { data: template } = useScriptTemplate();
   const [generatedCode, setGeneratedCode] = useState("// Drag nodes to generate script...");
 
     const nodeTypes = useMemo(() => ({
@@ -233,28 +233,7 @@ export default function EditorPage() {
 
   // Generate script whenever nodes change
   useEffect(() => {
-    // Basic HaxBall script structure as fallback
-    const fallbackScript = `
-// HaxNode Fallback Script
-var NombreHost = "HaxNode Room";
-var VisibilidadDelHost = true;
-var CantidadDeJugadores = 16;
-var PasswordDelHost = null;
-
-var room = HBInit({
-    roomName: NombreHost,
-    maxPlayers: CantidadDeJugadores,
-    public: VisibilidadDelHost,
-    password: PasswordDelHost,
-    noPlayer: true
-});
-
-room.onPlayerJoin = function(player) {
-    room.sendAnnouncement("¡Bienvenido/a a " + NombreHost + "!", player.id);
-};
-    `.trim();
-
-    let script = template?.content || fallbackScript;
+    let script = BASE_TEMPLATE;
     
     // Helper to get data from a specific node type
     const getData = (type: string) => nodes.find(n => n.type === type)?.data;
@@ -264,7 +243,7 @@ room.onPlayerJoin = function(player) {
       const escapedValue = isString ? (value === null ? "null" : `'${String(value).replace(/'/g, "\\'")}'`) : value;
       // Regex matches: var/let/const VarName = (anything); | covers spaces and different quotes
       const regex = new RegExp(`(var|let|const)\\s+${varName}\\s*=\\s*.*?;`, 'gi');
-      return content.replace(regex, `$1 ${varName} = ${escapedValue};`);
+      return content.replace(regex, (match, p1) => `${p1} ${varName} = ${escapedValue};`);
     };
 
     const hostData = getData('configHost');
@@ -272,7 +251,7 @@ room.onPlayerJoin = function(player) {
       script = replaceVar(script, 'NombreHost', hostData.hostName, true);
       script = replaceVar(script, 'VisibilidadDelHost', hostData.public);
       script = replaceVar(script, 'CantidadDeJugadores', hostData.maxPlayers);
-      script = replaceVar(script, 'PasswordDelHost', hostData.password || null, true);
+      script = replaceVar(script, 'PasswordDelHost', hostData.password || 'null', false); // value is null or string
       script = replaceVar(script, 'ReiniciarStats', hostData.reiniciarStats || 'No', true);
     }
 
@@ -304,8 +283,11 @@ room.onPlayerJoin = function(player) {
       
       const maps = ["EntrenamientoFutsal", "Futsalx2", "Futsalx3", "Futsalx4", "Futsalx5", "Futsalx7"];
       maps.forEach(map => {
-        script = replaceVar(script, `Tiempo${map}`, automatedData[`time${map}`]);
-        script = replaceVar(script, `Goles${map}`, automatedData[`goals${map}`]);
+        // Find matching key in automatedData (case sensitive check)
+        const timeKey = `time${map}`;
+        const goalsKey = `goals${map}`;
+        script = replaceVar(script, `Tiempo${map}`, automatedData[timeKey] ?? automatedData[timeKey.toLowerCase()]);
+        script = replaceVar(script, `Goles${map}`, automatedData[goalsKey] ?? automatedData[goalsKey.toLowerCase()]);
       });
     }
 
@@ -321,7 +303,7 @@ room.onPlayerJoin = function(player) {
         return `  { auth: "${auth.trim()}", nicks: [${nicks}] }`;
       }).join(',\n');
       
-      script = script.replace(/(var|let|const)\s+ListaDeAdmins\s*=\s*\[[\s\S]*?\];/i, `$1 ListaDeAdmins = [\n${admins || '  { auth: "", nicks: [""] }'}\n];`);
+      script = script.replace(/(var|let|const)\s+ListaDeAdmins\s*=\s*\[[\s\S]*?\];/i, (match, p1) => `${p1} ListaDeAdmins = [\n${admins || '  { auth: "", nicks: [""] }'}\n];`);
     }
 
     const botData = getData('bot');
@@ -341,7 +323,7 @@ room.onPlayerJoin = function(player) {
     const socialData = getData('social');
     if (socialData) {
       const msgs = socialData.welcomeMessage.split('\n').map((m: string) => `  \`${m}\``).join(',\n');
-      script = script.replace(/(var|let|const)\s+MensajeDeBienvenida\s*=\s*\[[\s\S]*?\];/i, `$1 MensajeDeBienvenida = [\n${msgs}\n];`);
+      script = script.replace(/(var|let|const)\s+MensajeDeBienvenida\s*=\s*\[[\s\S]*?\];/i, (match, p1) => `${p1} MensajeDeBienvenida = [\n${msgs}\n];`);
       script = replaceVar(script, 'colormensaje', socialData.colorMensaje, true);
       script = replaceVar(script, 'TipoDeLetra', socialData.tipoLetra, true);
     }
@@ -406,7 +388,7 @@ room.onPlayerJoin = function(player) {
         "myubication": null
       };
       
-      script = script.replace(/(var|let|const)\s+countryCoords\s*=\s*\{[\s\S]*?\};/i, `$1 countryCoords = ${JSON.stringify(countryCoords, null, 4)};`);
+      script = script.replace(/(var|let|const)\s+countryCoords\s*=\s*\{[\s\S]*?\};/i, (match, p1) => `${p1} countryCoords = ${JSON.stringify(countryCoords, null, 4)};`);
     }
 
     const tournamentData = getData('tournamentRules');
@@ -448,7 +430,7 @@ room.onPlayerJoin = function(player) {
         script = replaceVar(script, `ColorDelChatROL${i}`, `0x${color}`);
         script = replaceVar(script, `NombreROL${i}`, rolesData[`nombreRol${i}`] || "", true);
         const nicks = (rolesData[`nicknamesRol${i}`] || "").split(',').map((n: string) => `"${n.trim()}"`).filter((n: string) => n !== '""').join(', ');
-        script = script.replace(new RegExp(`(var|let|const)\\s+NickNamesRol${i}\\s*=\\s*\\[.*?\\];`, 'gi'), `$1 NickNamesRol${i} = [${nicks}];`);
+        script = script.replace(new RegExp(`(var|let|const)\\s+NickNamesRol${i}\\s*=\\s*\\[.*?\\];`, 'gi'), (match, p1) => `${p1} NickNamesRol${i} = [${nicks}];`);
       }
     }
 
@@ -458,11 +440,11 @@ room.onPlayerJoin = function(player) {
       script = replaceVar(script, 'LimiteMaximoDeJugadoresAFK', accessData.maxAFK);
       script = replaceVar(script, 'MaximoJugadoresPorIp', accessData.maxPerIp);
       const countries = accessData.forbiddenCountries.split(',').map((c: string) => `"${c.trim()}"`).filter((c: string) => c !== '""').join(', ');
-      script = script.replace(/(var|let|const)\s+PaisesProhibidos\s*=\s*\[.*?\];/gi, `$1 PaisesProhibidos = [${countries}];`);
+      script = script.replace(/(var|let|const)\s+PaisesProhibidos\s*=\s*\[.*?\];/gi, (match, p1) => `${p1} PaisesProhibidos = [${countries}];`);
       const ips = accessData.bannedIps.split('\n').map((i: string) => `"${i.trim()}"`).filter((i: string) => i !== '""').join(', ');
-      script = script.replace(/(var|let|const)\s+IpPlayers\s*=\s*\[.*?\];/gi, `$1 IpPlayers = [${ips}];`);
+      script = script.replace(/(var|let|const)\s+IpPlayers\s*=\s*\[.*?\];/gi, (match, p1) => `${p1} IpPlayers = [${ips}];`);
       const nicks = accessData.forbiddenNicks.split(',').map((n: string) => `"${n.trim()}"`).filter((n: string) => n !== '""').join(', ');
-      script = script.replace(/(var|let|const)\s+NicknamesPROHIBIDOS\s*=\s*\[.*?\];/gi, `$1 NicknamesPROHIBIDOS = [${nicks}];`);
+      script = script.replace(/(var|let|const)\s+NicknamesPROHIBIDOS\s*=\s*\[.*?\];/gi, (match, p1) => `${p1} NicknamesPROHIBIDOS = [${nicks}];`);
       
       const registeredLines = accessData.registeredPlayers.split('\n').filter((l: string) => l.includes(':'));
       const players = registeredLines.map((line: string) => {
@@ -471,7 +453,7 @@ room.onPlayerJoin = function(player) {
         return `  { auth: "${auth.trim()}", nicks: [${nicks}] }`;
       }).join(',\n');
       
-      script = script.replace(/(var|let|const)\s+ListaDeJogadores\s*=\s*\[[\s\S]*?\];/i, `$1 ListaDeJogadores = [\n${players || '  { auth: "authid_jugador1", nicks: ["Jugador1"] }'}\n];`);
+      script = script.replace(/(var|let|const)\s+ListaDeJogadores\s*=\s*\[[\s\S]*?\];/i, (match, p1) => `${p1} ListaDeJogadores = [\n${players || '  { auth: "authid_jugador1", nicks: ["Jugador1"] }'}\n];`);
 
       const bannedAuthLines = accessData.bannedAuthNick.split('\n').filter((l: string) => l.includes(':'));
       const bannedPlayers = bannedAuthLines.map((line: string) => {
@@ -480,17 +462,26 @@ room.onPlayerJoin = function(player) {
         return `  { auth: "${auth.trim()}", nicks: [${nicks}] }`;
       }).join(',\n');
       
-      script = script.replace(/(var|let|const)\s+ListaDeBaneados\s*=\s*\[[\s\S]*?\];/i, `$1 ListaDeBaneados = [\n${bannedPlayers || '  { auth: "banned_auth", nicks: ["BannedNick"] }'}\n];`);
+      script = script.replace(/(var|let|const)\s+ListaDeBaneados\s*=\s*\[[\s\S]*?\];/i, (match, p1) => `${p1} ListaDeBaneados = [\n${bannedPlayers || '  { auth: "banned_auth", nicks: ["BannedNick"] }'}\n];`);
     }
 
     const discordWebhooksData = getData('discordWebhooks');
     if (discordWebhooksData) {
       script = replaceVar(script, 'AnuncioHostAbierto', discordWebhooksData.webhookHostOpen, true);
       script = replaceVar(script, 'WebhookGrabaciones', discordWebhooksData.webhookRecordings, true);
+      script = replaceVar(script, 'WebhookParaLlamarAdmins', discordWebhooksData.webhookCallAdmins, true);
+      script = replaceVar(script, 'RolAdminHost', discordWebhooksData.rolAdminDiscord, true);
+      script = replaceVar(script, 'tiempoEsperaAdminsEnMinutos', discordWebhooksData.waitAdmins);
+      script = script.replace(/(var|let|const)\s+AnuncioKicksBans\s*=\s*.*?;/gi, (match, p1) => `${p1} AnuncioKicksBans = '${discordWebhooksData.webhookKicksBans}';`);
+      script = replaceVar(script, 'webhookMensajesJugadores', discordWebhooksData.webhookMessages, true);
+      script = replaceVar(script, 'webhookBoletero', discordWebhooksData.webhookBoletero, true);
+      script = replaceVar(script, 'webhookEstadisticasJugadores', discordWebhooksData.webhookStats, true);
+      script = replaceVar(script, 'WebhookParaFirmar', discordWebhooksData.webhookSign, true);
+      script = replaceVar(script, 'webhookIPJugadores', discordWebhooksData.webhookIPs, true);
     }
 
     setGeneratedCode(script);
-  }, [nodes, template]);
+  }, [nodes]);
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-background">

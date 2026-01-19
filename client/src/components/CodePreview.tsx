@@ -1,7 +1,7 @@
 import Editor from "@monaco-editor/react";
 import { Button } from "@/components/ui/button";
 import { Download, Copy, Check, ChevronRight, ChevronLeft } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { saveAs } from "file-saver";
 
 interface CodePreviewProps {
@@ -12,6 +12,10 @@ export function CodePreview({ code }: CodePreviewProps) {
   const [copied, setCopied] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
 
+  // We use useMemo to ensure that even large scripts don't cause performance issues
+  // in the Monaco editor when switching between views.
+  const editorValue = useMemo(() => code, [code]);
+
   const handleCopy = () => {
     navigator.clipboard.writeText(code);
     setCopied(true);
@@ -20,7 +24,7 @@ export function CodePreview({ code }: CodePreviewProps) {
 
   const handleDownload = () => {
     const blob = new Blob([code], { type: "text/javascript;charset=utf-8" });
-    saveAs(blob, "haxnode_script.js");
+    saveAs(blob, "Real_Soccer_Revolution_By_GLH_3.1.0.js");
   };
 
   if (isHidden) {
@@ -61,7 +65,7 @@ export function CodePreview({ code }: CodePreviewProps) {
         <Editor
           height="100%"
           defaultLanguage="javascript"
-          value={code}
+          value={editorValue}
           theme="vs-dark"
           options={{
             readOnly: true,
