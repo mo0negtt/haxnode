@@ -1,0 +1,81 @@
+// ▇▇▇▇▇▇▇ 🚫 RESTRICCIONES DE ACCESO 🚫 ▇▇▇▇▇▇▇
+
+// MÁXIMA CANTIDAD DE JUGADORES AFK PERMITIDOS
+const LimiteMaximoDeJugadoresAFK = 4; 
+// 🔒 Define el número máximo de jugadores AFK permitidos antes de activar la expulsión automática
+
+
+// 🚫 MAXIMO DE JUGADORES PERMITIDOS CON LA MISMA IP
+var MaximoJugadoresPorIp = 2;
+// Define el número máximo de jugadores permitidos con la misma IP
+
+
+// 🚫🌎 PAISES PROHIBIDOS
+const PaisesProhibidos = [];
+// Si un jugador es de alguno de estos países, será expulsado automáticamente al ingresar.
+// EJEMPLO DE USO: const PaisesProhibidos = ["Argentina", "Brazil", "Chile"];
+ 
+
+// 🚫📶 IPS BANEADAS
+let IpPlayers = []; // Añade entre comillas las Ips de los jugadores que quieras prohibir su ingreso. EJEMPLO: let IpPlayers = ["123.456.789", "987.654.321"];
+
+var MensajeBaneoPorIp = "❌ El admin ha baneado tu IP 📶"
+
+
+// ❌📛 NICKNAMES PROHIBIDOS
+const NicknamesPROHIBIDOS = ["@everyone", "@here", "@"]; 
+// Lista de nicknames prohibidos
+// Define los nicknames que no pueden ser utilizados
+
+// ▇▇▇▇▇▇▇▇▇ 🌐 FUNCIONES DE DISCORD 🤖 ▇▇▇▇▇▇▇▇▇
+
+
+// 🔥 Webhook para ANUNCIAR que has CREADO UNA SALA. Reemplaza con tu propia URL de webhook.
+var AnuncioHostAbierto = "https://discord.com/api/webhooks/1201825912958767134/g1BEoP1RNO_zSrQmf0nhkQRP_z3BnR2bJXfKYkK7CCPLk-KZf86tn-bPq_mDZ2UHwRMf";
+var MensajeHostAbierto = 
+`# 🚀 ¡NUEVO HOST ABIERTO! 🎮
+## ⚽ ¡No te lo pierdas! Únete al partido ahora y demuestra tus habilidades en la cancha.
+¡La diversión está por comenzar, no faltes! 🔥`;
+var TagHostAbierto = "@here"; //  Dejar "@here" o Colocar el "ID del Rol de Discord" al que quieres avisarle que creaste Host
+
+// 🎥 Webhook para GRABACIONES y RESÚMENES de las Partidas jugadas. Reemplaza con tu propia URL de webhook.
+const WebhookGrabaciones = "https://discord.com/api/webhooks/1322348400531738835/oKP4BL4iz8XhKgjzufGqUYfV7owjVlsyOgrlCyhhnX0Dcu3rJTiBUeVZI_53-QIBAaeI";
+
+
+// 📂 Link del servidor de Discord donde se subirán las GRABACIONES DE LAS PARTIDAS
+const GrabacionesDiscord = "https://discord.gg/8x9e2uyeWX";
+
+
+// 📞 Webhook para recibir el mensaje que han llamado a los Administradores. Reemplaza con tu propia URL de webhook.
+var WebhookParaLlamarAdmins = "https://discord.com/api/webhooks/1201852308569464873/FPoPAp2x3kxHpS4XWLcMIASHBu-zl1C7IbMTQYpCxOmyM_ARRVpsFEU71W-x8PFwbNBv";
+
+
+// 👮‍ Rol de Admin en Discord que se quiere llamar
+var RolAdminHost = "@here"; // Dejar '@here' o colocar el ID del rol de Discord que se quiere llamar
+var tiempoEsperaAdminsEnMinutos = 2;  // CANTIDAD DE MINUTOS A ESPERAR PARA REALIZAR UNA NUEVA LLAMADA A LOS ADMINS
+
+
+// 🚫 Webhook para anunciar los KICKS y BANS de la sala. Reemplaza con tu propia URL de webhook.
+const AnuncioKicksBans = "https://discord.com/api/webhooks/1304191735512961134/MIrXKhZrca3z1X-QYZL4czQY1FuK9EhehfMESJHqz6b3TJnRcchD9Z0JrMbC0hpDQYkI";
+
+
+// 💬 Webhook para ver los MENSAJES DE LOS JUGADORES. Reemplaza con tu propia URL de webhook.
+var webhookMensajesJugadores  = "https://discord.com/api/webhooks/1390246048815120384/cerrYajxDO30FK_rs_VcZi2xAcGfU7amBf89kzTUFLlqg_wgY2vIWU9fE8tZQzJr-UN7";
+
+
+
+// 🎟️ Webhook para enviar los INGRESOS y SALIDAS de los jugadores a Discord
+var webhookBoletero = "https://discord.com/api/webhooks/1215904770699690104/Cuk8W0gJLVhE9gSw54YseGe6KR5PnkeHcB7dvD_GGoGAO6f-JoAsQfMiOQnieiAfU84D";
+
+
+// 💬 Webhook para enviar estadísticas a Discord
+var webhookEstadisticasJugadores = "https://discord.com/api/webhooks/1338347025741385820/FxJAPCh3H6hNZvcaQOabz58RApSIwrjqjfjeek0y1k6GkbzN-UKnpUCipahK6W3b_aNW";
+
+
+
+// 🖊️ Webhook para firmar en partidos oficiales. Reemplaza con tu propia URL de webhook.
+var WebhookParaFirmar = "https://discord.com/api/webhooks/1172720661706321980/bafHm5CRFCH4aQKlYnyTn2D2dJrct2vI8QFwGs9OYxQMYL3f-ksGhzPdDZZMdIMqteCj";
+
+
+// 🔒 Webhook para enviar la IP de un jugador cuando se retire de la sala.
+var webhookIPJugadores  = "https://discord.com/api/webhooks/1329078558857101374/ZyjKtX_NsleSgWex_-sLZ2ukjv3Mo6cy0M-zLXTwLMu3v6svJo8CxJtrokjcPj7aejbp";

@@ -1,0 +1,56 @@
+Título del Proyecto: HaxNode - Editor Visual de Nodos para Scripts de Haxball
+
+Descripción Técnica: Crea una aplicación web profesional llamada "HaxNode". El objetivo es permitir a los usuarios configurar el script de Haxball "Script By GLH" a través de una interfaz de programación visual basada en nodos, similar al sistema de Blueprints de Unreal Engine 5.
+
+1. Interfaz de Usuario (UI/UX):
+
+Estética: Tema oscuro (Dark Mode), colores gris oscuro y negro (#121212), con acentos en azul eléctrico o verde neón.
+
+Canvas de Nodos: Utiliza una librería como LiteGraph.js o Rete.js para crear un espacio de trabajo infinito donde los usuarios puedan arrastrar y conectar nodos.
+
+Barra Lateral: Un panel para ver el código generado en tiempo real y un botón de "Exportar Script (.js)".
+
+2. Sistema de Nodos (Campos a editar): Crea nodos específicos para las siguientes categorías basándose en el archivo editado.txt:
+
+Configuración General: Nodos para NombreHost (Input texto), VisibilidadDelHost (Toggle), CantidadDeJugadores (Slider 1-30), PasswordDelHost (Input texto/null).
+
+Administración: Nodos para ClaveParaSerAdmin, Lista de Admins (Array de Auth y Nick), ClaveReserva.
+
+Reglas de Juego: Nodos para Mapa por defecto, Tiempo de Juego, Límite de Goles, Modos de Juego, Modo Automático.
+
+Personalización Visual: Nodos para Tamaño de Jugadores, Camisetas por Defecto (Kits), Diseño de Pelota, Código de la Bandera.
+
+Social y Mensajería: Nodos para Mensaje de Bienvenida (con selector de color hexadecimal), Anuncio 1 y 2, Redes Sociales, Webhooks de Discord.
+
+Host Info: Nodos para Ubicación del Host (Dropdown basado en el mapa de coordenadas del archivo), Bandera del Host, Roles del Host, Cooldown del Chat, Tiempo AFK.
+
+3. Lógica de Funcionalidad:
+
+Script Base: La aplicación debe cargar internamente el contenido del archivo Script by GLH.js.
+
+Inyección de Datos: Cuando el usuario modifica un valor en un nodo (por ejemplo, cambia el nombre del host), la aplicación debe buscar la variable correspondiente en la sección de configuración del script (la parte que coincide con editado.txt) y reemplazar su valor.
+
+Generador de Archivos: Al hacer clic en "Exportar", la app debe combinar la configuración personalizada con el resto del código lógico del script original y entregar un archivo .js listo para usar en la consola de Haxball.
+
+4. Características Especiales:
+
+Bot Toggle: Un nodo que permita activar o desactivar la presencia del bot en la sala.
+
+Pre-visualización de Color: El nodo de "Mensaje de Bienvenida" debe mostrar un pequeño recuadro con el color seleccionado.
+
+Mapa de Ubicación: Al elegir una ciudad en el nodo de "Ubicación", debe asignar automáticamente las coordenadas de latitud y longitud correspondientes (ej: Chile: [-33.45, -70.66]).
+
+Stack Tecnológico sugerido:
+
+HTML/Tailwind CSS para el diseño.
+
+JavaScript (Vanilla o React) para la lógica.
+
+LiteGraph.js para el sistema de nodos.
+
+Consejos para mejorar tu proyecto en Replit:
+Carga los archivos: Sube el Script by GLH.js y el editado.txt a la carpeta de archivos de Replit antes de ejecutar el prompt, para que el Agente de Replit pueda leer la estructura exacta de las variables.
+
+Modularidad: Pide al Replit Agent que cree un archivo config.js separado donde se guarden los valores de los nodos antes de unirlos al script principal; esto hará que el código sea más limpio.
+
+Validación: Asegúrate de que el prompt valide que el CantidadDeJugadores no supere los 30, ya que es el límite de la API de Haxball.

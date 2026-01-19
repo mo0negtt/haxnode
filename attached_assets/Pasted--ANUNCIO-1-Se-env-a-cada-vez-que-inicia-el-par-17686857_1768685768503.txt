@@ -1,0 +1,72 @@
+// ════════════════════  📢 ANUNCIO 1 ════════════════════ 
+// (Se envía cada vez que inicia el partido)
+
+var Anuncio = "✨ ÚNETE AL DISCORD DE GLH Y APRENDE A CREAR TU PROPIO HOST CON SCRIPT: discord.gg/tDEUbJU8QB"; 
+// Anuncio que viene por Defecto (Se envía a los 10 segundos del inicio de cada partido)
+
+
+// ⏲️ TIEMPO DEL ANUNCIO
+var AnuncioMinuto = 0; 
+//  Representa el minuto del partido en el que se desea mostrar el anuncio.
+
+var AnuncioSegundos = 10; 
+// Representa los segundos en el minuto del partido en el que se desea mostrar el anuncio.
+
+var TipoDeLetraAnuncio = "bold"; 
+// Puedes cambiar esta opción por: "normal", "bold", "italic", "small", "small-bold", y "small-italic"
+
+
+var ColorAnuncio = "FFFFFF"; 
+
+
+// ════════════════════  📢 ANUNCIO 2 ════════════════════ 
+
+var Anuncio2 = "🛑 Para expulsar a un jugador, utiliza el comando `!expulsar NúmeroID`. Para ver los IDs de los jugadores, escribe `#` en el chat. Ejemplo: `!expulsar 25` expulsará al jugador con el ID 25.";
+// Anuncio 2 que viene por Defecto (Se envía a los 10 segundos del inicio de cada partido)
+
+// ⏲️ TIEMPO DEL ANUNCIO 2
+var Anuncio2Minuto = 0; 
+//  Representa el minuto del partido en el que se desea mostrar el anuncio 2.
+
+var Anuncio2Segundos = 40; 
+// Representa los segundos en el minuto del partido en el que se desea mostrar el anuncio 2.
+
+var TipoDeLetraAnuncio2 = "italic"; 
+// Puedes cambiar esta opción por: "normal", "bold", "italic", "small", "small-bold", y "small-italic"
+
+var ColorAnuncio2 = "CCFF00"; 
+
+
+// ▇▇▇▇▇▇▇ 🛠️ CONFIGURACIÓN GENERAL ▇▇▇▇▇▇▇
+
+// 👁️‍🗨️ MOSTRAR IPs A ADMINISTRADORES
+var MostrarIps = "No"; 
+// Cambia "Si" por "No" si no deseas mostrar las IPs a los administradores cuando un jugador se una a la sala
+
+const ColocarJuntoAlNickname = ""; // Opciones disponibles: "ID", "Nivel" o "" (sin nada)
+
+
+// ▇▇▇▇▇▇▇ 🗳️ SISTEMA DE VOTACIONES 🗳️ ▇▇▇▇▇▇▇
+
+// Variable configurable para el porcentaje de votos requeridos
+
+var PorcentajeDeVotosBan = 40; 
+// Cambia este valor al porcentaje deseado (por ejemplo, 30 para 30% de los votos)
+
+var PorcentajeDeVotosAdmin = 40; 
+// Cambia este valor al porcentaje deseado (por ejemplo, 30 para 30% de los votos)
+
+
+// ▇▇▇▇▇▇▇ ⏰ TIEMPO AFK  ▇▇▇▇▇▇▇
+
+
+const SegundosPermitidosAFK = 15; // Establece el tiempo permitido en segundos para estar AFK (Cuando están en el Red o en el Blue)
+
+const MinutosPermitidosAFK = 5;  // Establece el tiempo permitido en minutos para estar AFK (Cuando se encuentran Espectadores)
+
+
+// ▇▇▇▇▇▇▇▇▇ 🌐👥 REDES SOCIALES ▇▇▇▇▇▇▇▇▇
+
+const DiscordLink = "discord.gg/tDEUbJU8QB";	// Link de tu Servidor de Discord
+const YoutubeLink = "youtube.com/@GrandesLigasHaxBall"; 	// Link de tu canal de Youtube
+const TwitchLink = "twitch.tv/stefano365p";	// Link de tu canal de Twitch

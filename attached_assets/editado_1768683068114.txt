@@ -1,0 +1,901 @@
+// ▇▇▇▇▇▇▇▇▇ ⚙️ CONFIGURACIÓN DEL HOST ▇▇▇▇▇▇▇▇▇
+
+
+// 📝 NOMBRE DEL HOST
+var NombreHost = '▶️▶️🟦🟩  UNETE Y JUEGA 🟩🟦◀️◀️';
+// Definimos el nombre del host (dentro de las comillas)
+
+
+// 👁️ VISIBILIDAD DEL HOST 
+var VisibilidadDelHost = true; 
+// La sala es pública si está en "true", privada si está en "false"
+
+
+// 👥 CANTIDAD MÁXIMA DE JUGADORES
+var CantidadDeJugadores = 16; 
+// Cantidad máxima de jugadores que permitirás ingresar a tu Host. Puedes elegir entre 1 y 30 jugadores
+
+
+// 🔄 REINICIAR STATS
+var ReiniciarStats = "No"; // Cambia a "Si" si querés reiniciar las estadísticas al Iniciar la sala.
+
+
+// 🔒 CONTRASEÑA DEL HOST
+var PasswordDelHost = null;
+// Contraseña para acceder al Host (dejar null si no quieres colocarle una contraseña). Si quieres una contraseña, reemplaza null y coloca la contraseña entre comillas (Ejemplo: var PasswordDelHost = "123";)
+
+// ▇▇▇▇▇▇▇▇▇ 👑 ADMINISTRACIÓN DEL HOST 🔑 ▇▇▇▇▇▇▇▇▇
+
+// 🔑 CONTRASEÑA PARA SER ADMINISTRADOR DEL HOST
+var ClaveParaSerAdmin = "!axeso5"; 
+// Clave para ser administrador. Pon la contraseña entre comillas.
+
+
+// 👑 ADMINISTRADORES DEL HOST 
+// Lista de admins, con sus nicknames permitidos y, opcionalmente, su auth público
+// (El Public ID (auth) se obtiene en: haxball.com/playerauth) 
+var ListaDeAdmins = [
+  {
+    auth: "", // Auth opcional; puede estar vacío "" si no se usa
+    nicks: [""]
+  }
+];
+
+// 🔐 CONTRASEÑA PARA ADMINISTRADORES
+var contrasena = "reservado";
+// Contraseña para reservar el espacio a los Administradores
+
+
+// ▇▇▇▇▇▇▇▇▇ ⚙️ CONFIGURACIÓN DEL BOT 🤖 ▇▇▇▇▇▇▇▇▇
+
+// 👀 VISIBILIDAD DEL BOT 
+var BotVisible = false; 
+// Elige true si quieres que el bot sea visible como jugador o false para que esté oculto.
+
+
+// 📛 NOMBRE DEL BOT
+var NombreBot = "🚩 Árbitro Bot 🤖"; 
+// Define el nombre del bot.
+
+
+// 🟢 ESTADO DEL BOT
+var StatusBot = "afk"; // Puede ser "activo" o "afk"
+
+// ▇▇▇▇▇▇▇▇▇ ⚙️ CONFIGURACIÓN DEL JUEGO 🎮 ▇▇▇▇▇▇▇▇▇
+
+// 🗺️ MAPA POR DEFECTO
+var MapaPorDefecto = "Futsal x3"; 
+// OPCIONES: EntrenamientoFutsal, Futsal x2, Real Futsal
+
+
+// ⏱️ TIEMPO DE JUEGO
+var TiempoDeJuego = 3;
+// Duración por defecto de las partidas (En minutos)
+
+
+// ⚽ LÍMITE DE GOLES
+var LimiteDeGoles = 3;
+// Limite de Goles por defecto
+
+
+
+// ▇▇▇▇▇▇▇ 🎮 MODOS DE JUEGO  ▇▇▇▇▇▇▇
+
+
+let autoBalanceEnabled = false; // true para ACTIVARLO - false para DESACTIVARLO | Equilibrar equipos en cantidad de jugadores
+
+var cambioCami = false; // true para ACTIVARLO - false para DESACTIVARLO | Cambiar camisetas automáticamente cada vez que se reinicia un partido.
+
+var powerShotMode = false; // true para ACTIVARLO - false para DESACTIVARLO | Activar el Disparo Potente (PowerShot)
+
+var JabulaniMode = false; // true para ACTIVARLO - false para DESACTIVARLO | Activar el Disparo Potente (PowerShot) con comba
+
+var combaMode = false; // true para ACTIVARLO - false para DESACTIVARLO | Activar sólo la Comba (cada vez que se patea la pelota)
+
+var GolDeOroActivado = false; // true para ACTIVARLO - false para DESACTIVARLO | Activar Gol de Oro
+
+var FairPlayActivado = false; // true para ACTIVARLO - false para DESACTIVARLO | Modo FairPlay
+
+let ganasigueEnabled = false; // true para ACTIVARLO - false para DESACTIVARLO | Modo Gana Sigue
+
+let modoJueganTodos = false; // true para ACTIVARLO - false para DESACTIVARLO | Modo Juegan Todos
+
+let modoJueganAlgunos = false; // true para ACTIVARLO - false para DESACTIVARLO |Modo Juegan Algunos
+
+let maxPlayersPerTeam = 2; // Establecer el número máximo de jugadores por equipo (Modo Juegan Algunos)
+
+let isAFKpaused = false; // Estado inicial del detector de AFK
+
+
+// MODO AUTOMATIZADO
+
+var automatizadoActivado = false; // true para ACTIVARLO - false para DESACTIVARLO | Modo Automatizado
+
+var tiempoLimiteCambio = 30; // Tiempo límite (en segundos) para permitir cambiar mapa automaticamente
+
+var tiempoEsperaCambio = 5000; // 5000 ms = 5 segundos de espera | Tiempo de demora en colocar el mapa.
+
+var configuracionActual = null;
+
+// LIMITES: GOLES Y TIEMPO (AUTOMATIZADO)
+
+var TiempoEntrenamientoFutsal = 0;
+var GolesEntrenamientoFutsal = 0;
+
+var TiempoFutsalx2 = 3;
+var GolesFutsalx2 = 3;
+
+var TiempoFutsalx3 = 3;
+var GolesFutsalx3 = 3;
+
+var TiempoFutsalx4 = 4;
+var GolesFutsalx4 = 3;
+
+var TiempoFutsalx5 = 4;
+var GolesFutsalx5 = 3;
+
+var TiempoFutsalx7 = 5;
+var GolesFutsalx7 = 3;
+
+// ▇▇▇▇▇▇▇  📏 TAMAÑO DE LOS JUGADORES  ▇▇▇▇▇▇▇
+
+var TamanoMinimoPermitido = 15;
+// Tamaño mínimo permitido para un jugador 
+
+var TamanoMaximoPermitido = 15;
+// Tamaño máximo permitido para un jugador
+
+var CantidadCambiarTamano = 1;
+// Cantidad de veces que un jugador puede cambiar su tamaño por partido
+
+
+// ▇▇▇▇▇▇▇ ⚽👕 CAMISETAS POR DEFECTO ⚽👕 ▇▇▇▇▇▇▇
+
+// CAMISETA EQUIPO RED 🔴
+var camisetaRed = "/colors red 66 FFA649 DE0019 B80017 820217";
+var NombreEquipoRojo = "RED";
+
+// CAMISETA EQUIPO BLUE 🔵
+var camisetaBlue = "/colors blue 55 c1ff00 052647 005DB3 03B2F0";
+var NombreEquipoAzul = "BLUE";
+
+
+
+// ▇▇▇▇▇▇▇ 🚫 RESTRICCIONES DE ACCESO 🚫 ▇▇▇▇▇▇▇
+
+// MÁXIMA CANTIDAD DE JUGADORES AFK PERMITIDOS
+const LimiteMaximoDeJugadoresAFK = 4; 
+// 🔒 Define el número máximo de jugadores AFK permitidos antes de activar la expulsión automática
+
+
+// 🚫 MAXIMO DE JUGADORES PERMITIDOS CON LA MISMA IP
+var MaximoJugadoresPorIp = 2;
+// Define el número máximo de jugadores permitidos con la misma IP
+
+
+// 🚫🌎 PAISES PROHIBIDOS
+const PaisesProhibidos = [];
+// Si un jugador es de alguno de estos países, será expulsado automáticamente al ingresar.
+// EJEMPLO DE USO: const PaisesProhibidos = ["Argentina", "Brazil", "Chile"];
+ 
+
+// 🚫📶 IPS BANEADAS
+let IpPlayers = []; // Añade entre comillas las Ips de los jugadores que quieras prohibir su ingreso. EJEMPLO: let IpPlayers = ["123.456.789", "987.654.321"];
+
+var MensajeBaneoPorIp = "❌ El admin ha baneado tu IP 📶"
+
+
+// ❌📛 NICKNAMES PROHIBIDOS
+const NicknamesPROHIBIDOS = ["@everyone", "@here", "@"]; 
+// Lista de nicknames prohibidos
+// Define los nicknames que no pueden ser utilizados
+
+// ▇▇▇▇▇▇▇▇▇ 🌐 FUNCIONES DE DISCORD 🤖 ▇▇▇▇▇▇▇▇▇
+
+
+// 🔥 Webhook para ANUNCIAR que has CREADO UNA SALA. Reemplaza con tu propia URL de webhook.
+var AnuncioHostAbierto = "https://discord.com/api/webhooks/1201825912958767134/g1BEoP1RNO_zSrQmf0nhkQRP_z3BnR2bJXfKYkK7CCPLk-KZf86tn-bPq_mDZ2UHwRMf";
+var MensajeHostAbierto = 
+`# 🚀 ¡NUEVO HOST ABIERTO! 🎮
+## ⚽ ¡No te lo pierdas! Únete al partido ahora y demuestra tus habilidades en la cancha.
+¡La diversión está por comenzar, no faltes! 🔥`;
+var TagHostAbierto = "@here"; //  Dejar "@here" o Colocar el "ID del Rol de Discord" al que quieres avisarle que creaste Host
+
+// 🎥 Webhook para GRABACIONES y RESÚMENES de las Partidas jugadas. Reemplaza con tu propia URL de webhook.
+const WebhookGrabaciones = "https://discord.com/api/webhooks/1322348400531738835/oKP4BL4iz8XhKgjzufGqUYfV7owjVlsyOgrlCyhhnX0Dcu3rJTiBUeVZI_53-QIBAaeI";
+
+
+// 📂 Link del servidor de Discord donde se subirán las GRABACIONES DE LAS PARTIDAS
+const GrabacionesDiscord = "https://discord.gg/8x9e2uyeWX";
+
+
+// 📞 Webhook para recibir el mensaje que han llamado a los Administradores. Reemplaza con tu propia URL de webhook.
+var WebhookParaLlamarAdmins = "https://discord.com/api/webhooks/1201852308569464873/FPoPAp2x3kxHpS4XWLcMIASHBu-zl1C7IbMTQYpCxOmyM_ARRVpsFEU71W-x8PFwbNBv";
+
+
+// 👮‍ Rol de Admin en Discord que se quiere llamar
+var RolAdminHost = "@here"; // Dejar '@here' o colocar el ID del rol de Discord que se quiere llamar
+var tiempoEsperaAdminsEnMinutos = 2;  // CANTIDAD DE MINUTOS A ESPERAR PARA REALIZAR UNA NUEVA LLAMADA A LOS ADMINS
+
+
+// 🚫 Webhook para anunciar los KICKS y BANS de la sala. Reemplaza con tu propia URL de webhook.
+const AnuncioKicksBans = "https://discord.com/api/webhooks/1304191735512961134/MIrXKhZrca3z1X-QYZL4czQY1FuK9EhehfMESJHqz6b3TJnRcchD9Z0JrMbC0hpDQYkI";
+
+
+// 💬 Webhook para ver los MENSAJES DE LOS JUGADORES. Reemplaza con tu propia URL de webhook.
+var webhookMensajesJugadores  = "https://discord.com/api/webhooks/1390246048815120384/cerrYajxDO30FK_rs_VcZi2xAcGfU7amBf89kzTUFLlqg_wgY2vIWU9fE8tZQzJr-UN7";
+
+
+
+// 🎟️ Webhook para enviar los INGRESOS y SALIDAS de los jugadores a Discord
+var webhookBoletero = "https://discord.com/api/webhooks/1215904770699690104/Cuk8W0gJLVhE9gSw54YseGe6KR5PnkeHcB7dvD_GGoGAO6f-JoAsQfMiOQnieiAfU84D";
+
+
+// 💬 Webhook para enviar estadísticas a Discord
+var webhookEstadisticasJugadores = "https://discord.com/api/webhooks/1338347025741385820/FxJAPCh3H6hNZvcaQOabz58RApSIwrjqjfjeek0y1k6GkbzN-UKnpUCipahK6W3b_aNW";
+
+
+
+// 🖊️ Webhook para firmar en partidos oficiales. Reemplaza con tu propia URL de webhook.
+var WebhookParaFirmar = "https://discord.com/api/webhooks/1172720661706321980/bafHm5CRFCH4aQKlYnyTn2D2dJrct2vI8QFwGs9OYxQMYL3f-ksGhzPdDZZMdIMqteCj";
+
+
+// 🔒 Webhook para enviar la IP de un jugador cuando se retire de la sala.
+var webhookIPJugadores  = "https://discord.com/api/webhooks/1329078558857101374/ZyjKtX_NsleSgWex_-sLZ2ukjv3Mo6cy0M-zLXTwLMu3v6svJo8CxJtrokjcPj7aejbp";
+
+
+
+// ▇▇▇▇▇▇▇▇ 📢 ANUNCIOS Y MENSAJE DE BIENVENIDA ▇▇▇▇▇▇▇▇▇▇
+// ════════════════════  🎉 MENSAJE DE BIENVENIDA ════════════════════ 
+// (Se envía al jugador que recién ingresa al host por partes)
+
+const MensajeDeBienvenida = [
+  `
+░█▀▀█ ░█─── ░█─░█ 
+░█─▄▄ ░█─── ░█▀▀█ 
+░█▄▄█ ░█▄▄█ ░█─░█`, 
+
+  `🎉 ¡Bienvenido/a! 🎉`,  
+
+  `Estás ingresando a un host de HaxBall creado con un script desarrollado por GLH ⚙️`,  
+
+  `🌐 Únete a nuestra comunidad en Discord y accedé a:`,  
+
+  `🧩 Scripts completos para crear tu propia sala como esta (con soporte y personalización sin costo)`,  
+
+  `📲 Apps de HaxBall (Para PC y/o móvil)`,  
+
+  `⚽ Mapas personalizados GRATIS: Futsal, Real Soccer y muchas otras modalidades`,  
+
+  `📺 Descubre a streamers de HaxBall`,  
+
+  `👥 ¡Buscá equipo o reclutá jugadores para el tuyo!`,  
+
+  `🌍 Ligas activas de múltiples países y modalidades`,  
+
+  `❓ ¿Tenés dudas? Consultá al staff o escribí en el canal de ayuda`,  
+
+  `🔗 Unite ahora: https://discord.com/invite/tDEUbJU8QB`,
+
+  `Para ver estadísticas usa: !me, !stats ID, !goleadores, !asistidores, !vallas-invictas, !mvp, !racha-historica, !racha-actual, !viciosos, !ganadores, !presencias`,
+
+  `Mide tu banana con 🍌: !memide | AVATAR ANIMADOS, EJEMPLOS: !avatar 😈,👿  | !avatar HO,LA | !avatar 🌑,🌒,🌓,🌔,🌕,🌖,🌗,🌘`
+];
+
+// 🎨 PERSONALIZACIÓN DEL MENSAJE DE BIENVENIDA
+var colormensaje = "FFFFFF";
+
+var TipoDeLetra = "normal"; 
+// Puedes cambiar esta opción por: "normal", "bold", "italic", "small", "small-bold", y "small-italic"
+
+
+// ════════════════════  📢 ANUNCIO 1 ════════════════════ 
+// (Se envía cada vez que inicia el partido)
+
+var Anuncio = "✨ ÚNETE AL DISCORD DE GLH Y APRENDE A CREAR TU PROPIO HOST CON SCRIPT: discord.gg/tDEUbJU8QB"; 
+// Anuncio que viene por Defecto (Se envía a los 10 segundos del inicio de cada partido)
+
+
+// ⏲️ TIEMPO DEL ANUNCIO
+var AnuncioMinuto = 0; 
+//  Representa el minuto del partido en el que se desea mostrar el anuncio.
+
+var AnuncioSegundos = 10; 
+// Representa los segundos en el minuto del partido en el que se desea mostrar el anuncio.
+
+var TipoDeLetraAnuncio = "bold"; 
+// Puedes cambiar esta opción por: "normal", "bold", "italic", "small", "small-bold", y "small-italic"
+
+
+var ColorAnuncio = "FFFFFF"; 
+
+
+// ════════════════════  📢 ANUNCIO 2 ════════════════════ 
+
+var Anuncio2 = "🛑 Para expulsar a un jugador, utiliza el comando `!expulsar NúmeroID`. Para ver los IDs de los jugadores, escribe `#` en el chat. Ejemplo: `!expulsar 25` expulsará al jugador con el ID 25.";
+// Anuncio 2 que viene por Defecto (Se envía a los 10 segundos del inicio de cada partido)
+
+// ⏲️ TIEMPO DEL ANUNCIO 2
+var Anuncio2Minuto = 0; 
+//  Representa el minuto del partido en el que se desea mostrar el anuncio 2.
+
+var Anuncio2Segundos = 40; 
+// Representa los segundos en el minuto del partido en el que se desea mostrar el anuncio 2.
+
+var TipoDeLetraAnuncio2 = "italic"; 
+// Puedes cambiar esta opción por: "normal", "bold", "italic", "small", "small-bold", y "small-italic"
+
+var ColorAnuncio2 = "CCFF00"; 
+
+
+// ▇▇▇▇▇▇▇ 🛠️ CONFIGURACIÓN GENERAL ▇▇▇▇▇▇▇
+
+// 👁️‍🗨️ MOSTRAR IPs A ADMINISTRADORES
+var MostrarIps = "No"; 
+// Cambia "Si" por "No" si no deseas mostrar las IPs a los administradores cuando un jugador se una a la sala
+
+const ColocarJuntoAlNickname = ""; // Opciones disponibles: "ID", "Nivel" o "" (sin nada)
+
+
+// ▇▇▇▇▇▇▇ 🗳️ SISTEMA DE VOTACIONES 🗳️ ▇▇▇▇▇▇▇
+
+// Variable configurable para el porcentaje de votos requeridos
+
+var PorcentajeDeVotosBan = 40; 
+// Cambia este valor al porcentaje deseado (por ejemplo, 30 para 30% de los votos)
+
+var PorcentajeDeVotosAdmin = 40; 
+// Cambia este valor al porcentaje deseado (por ejemplo, 30 para 30% de los votos)
+
+
+// ▇▇▇▇▇▇▇ ⏰ TIEMPO AFK  ▇▇▇▇▇▇▇
+
+
+const SegundosPermitidosAFK = 15; // Establece el tiempo permitido en segundos para estar AFK (Cuando están en el Red o en el Blue)
+
+const MinutosPermitidosAFK = 5;  // Establece el tiempo permitido en minutos para estar AFK (Cuando se encuentran Espectadores)
+
+
+// ▇▇▇▇▇▇▇▇▇ 🌐👥 REDES SOCIALES ▇▇▇▇▇▇▇▇▇
+
+const DiscordLink = "discord.gg/tDEUbJU8QB";	// Link de tu Servidor de Discord
+const YoutubeLink = "youtube.com/@GrandesLigasHaxBall"; 	// Link de tu canal de Youtube
+const TwitchLink = "twitch.tv/stefano365p";	// Link de tu canal de Twitch
+
+
+// ▇▇▇▇▇▇▇ 📍 UBICACIÓN DEL HOST ▇▇▇▇▇▇▇
+
+	var UbicacionDelHost = "myubication"; 
+
+
+	// ES LA UBICACIÓN EN LA QUE APARECERÁ TU HOST | Puedes reemplazar "argentina" por alguna de estas opciones.
+
+
+	// OPCIONES DISPONIBLES:
+
+// TU GEOLOCALIZACIÓN POR DEFECTO: myubication
+
+		// AMÉRICA:
+
+			// argentina, haxarg, uruguay, brasil, colombia, chile, mexico
+
+			// bolivia, peru, paraguay, venezuela, costa rica, united states, canada
+
+		// EUROPA:
+
+			// france, spain, italy, germany, netherlands, portugal
+
+			// croatia, macedonia, serbia, poland, ukraine, russia, marruecos, united kingdom, turkey
+
+		
+		// ASIA:
+
+			// south korea, japan, china, vietnam, israel
+
+
+// ▇▇▇▇▇▇▇ BANDERA DEL HOST 🏳️ ▇▇▇▇▇▇▇
+
+
+	var BanderaDelHost = 'Germany';  // Elige el país con la bandera que quieres para tu Sala
+
+
+// OPCIONES DISPONIBLES POR CONTINENTE:
+
+// ÁFRICA:
+	// Algeria, Angola, Benin, Botswana, BurkinaFaso, Burundi, Cameroon, CapeVerde, CentralAfricanRepublic, Chad, Comoros,
+	// Congo, CongoTheDemocraticRepublicOfThe, CoteDIvoire, Djibouti, Egypt, EquatorialGuinea, Eritrea, Ethiopia, Gabon,
+	// Gambia, Ghana, Guinea, GuineaBissau, Kenya, Lesotho, Liberia, LibyanArabJamahiriya, Madagascar, Malawi, Mali, Mauritania,
+	// Mauritius, Morocco, Mozambique, Namibia, Niger, Nigeria, Rwanda, SaoTomeAndPrincipe, Senegal, Seychelles, SierraLeone,
+	// Somalia, SouthAfrica, SouthSudan, Sudan, Swaziland, Tanzania, Togo, Tunisia, Uganda, Zambia, Zimbabwe
+
+// AMÉRICA:
+	// AntiguaAndBarbuda, Argentina, Aruba, Bahamas, Barbados, Belize, Bermuda, Bolivia, BonaireSaintEustatiusAndSaba, Brazil,
+	// BritishIndianOceanTerritory, Canada, CaymanIslands, Chile, Colombia, CostaRica, Cuba, Curacao, Dominica, DominicanRepublic,
+	// Ecuador, ElSalvador, FalklandIslandsMalvinas, FrenchGuiana, Grenada, Guadeloupe, Guatemala, Guyana, Haiti, Honduras,
+	// Jamaica, Martinique, Mexico, Montserrat, Nicaragua, Panama, Paraguay, Peru, PuertoRico, SaintBarthelemy, SaintKittsAndNevis,
+	// SaintLucia, SaintMartin, SaintPierreAndMiquelon, SaintVincentAndTheGrenadines, SintMaartenDutchPart, Suriname, TrinidadAndTobago,
+	// TurksAndCaicosIslands, UnitedStates, UnitedStatesMinorOutlyingIslands, Uruguay, Venezuela, VirginIslandsBritish, VirginIslandsUS
+
+// ASIA:
+	// Afghanistan, Armenia, Azerbaijan, Bahrain, Bangladesh, Bhutan, Brunei, Cambodia, China, ChristmasIsland, CocosKeelingIslands,
+	// HongKong, India, Indonesia, Iran, Iraq, Israel, Japan, Jordan, Kazakhstan, Kuwait, Kyrgyzstan, LaoPeoplesDemocraticRepublic,
+	// Lebanon, Macao, Malaysia, Maldives, Mongolia, Myanmar, Nepal, NorthKorea, Oman, Pakistan, Palestine, Philippines, Qatar,
+	// SaudiArabia, Singapore, SouthKorea, SriLanka, Syria, Taiwan, Tajikistan, Thailand, TimorLeste, Turkey, Turkmenistan,
+	// UnitedArabEmirates, Uzbekistan, VietNam, Yemen
+
+// EUROPA:
+	// Albania, Andorra, Austria, Belarus, Belgium, BosniaAndHerzegovina, Bulgaria, Croatia, Cyprus, CzechRepublic, Denmark,
+	// Estonia, FaroeIslands, Finland, France, Germany, Gibraltar, Greece, Greenland, Hungary, Iceland, Ireland, Italy, Kosovo,
+	// Latvia, Liechtenstein, Lithuania, Luxembourg, MacedoniaTheFormerYugoslavRepublicOf, Malta, Moldova, Monaco, Montenegro,
+	// Netherlands, Norway, Poland, Portugal, Romania, Russia, SanMarino, Serbia, Slovakia, Slovenia, Spain, SvalbardAndJanMayen,
+	// Sweden, Switzerland, Ukraine, UnitedKingdom
+
+// OCEANÍA:
+	// Australia, Fiji, FrenchPolynesia, Guam, Kiribati, MarshallIslands, MicronesiaFederatedStatesOf, Nauru, NewCaledonia,
+	// NewZealand, Niue, NorfolkIsland, Palau, PapuaNewGuinea, Pitcairn, Samoa, SolomonIslands, Tokelau, Tonga, Tuvalu, Vanuatu
+
+// OTROS:
+	// Haxball, Antarctica, Anguilla, Antarctica, Bermuda, BouvetIsland, BritishIndianOceanTerritory, HeardIslandAndMcDonaldIslands,
+	// HolySeeVaticanCityState, IsleOfMan, Jersey, Mayotte, Monaco, Montserrat, SouthGeorgiaAndTheSouthSandwichIslands
+
+
+
+
+
+//  ▇▇▇▇▇▇▇ 👤 ASIGNAR ROLES ▇▇▇▇▇▇▇
+
+
+// Definiciones de colores
+const ColorDelChatROL1 = 0xFFD700;
+const ColorDelChatROL2 = 0xffffff;
+const ColorDelChatROL3 = 0xffffff;
+const ColorDelChatROL4 = 0xffffff;
+const ColorDelChatROL5 = 0xffffff;
+const ColorDelChatROL6 = 0xffffff;
+const ColorDelChatROL7 = 0xffffff;
+const adminChatColor = 0xffdb72;
+const RedChatColor = 0xff6363;
+const BlueChatColor = 0x63f2ff;
+const RedTeamChatColor = 0xFD2C2D;
+const BlueTeamChatColor = 0x18fde8;
+const SpectChatColor = 0xD3D3D3; // Color del chat para espectadores
+
+// Listas de nombres de usuario por rol
+const NickNamesRol1 = []; // Añadir nombres de usuarios para ROL1 entre comillas | EJEMPLO: const NickNamesRol1 = ["Messi", "Neymar"];
+const NickNamesRol2 = []; // Añadir nombres de usuarios para ROL2 entre comillas | EJEMPLO: const NickNamesRol2 = ["ROMAN #10", "Martín Palermo 9"];
+const NickNamesRol3 = []; // Añadir nombres de usuarios para ROL3 entre comillas | EJEMPLO: const NickNamesRol3 = ["Burrito Ortega"];
+const NickNamesRol4 = []; // Añadir nombres de usuarios para ROL4 entre comillas
+const NickNamesRol5 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol6 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol7 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+
+// Nombres de roles
+const NombreROL1 = "🗦👑🗧𝗢𝗪𝗡𝗘𝗥";
+const NombreROL2 = "🤝 CO-OWNER";
+const NombreROL3 = "🌐 HOSTER";
+const NombreROL4 = "🛠️ AYUDANTE";
+const NombreROL5 = "🔧 SUBAYUDANTE";
+const NombreROL6 = "🧉 COLABORADOR";
+const NombreROL7 = "💡 ASISTENTE";
+const NombreROLAdmin = "👑 ADMIN";
+const NombreROLRed = "🔴";
+const NombreROLBlue = "🔵";
+const NombreROLSpect = "👁️";
+
+const RoleAttributes = {
+    [NombreROL1]: { style: "bold", sound: 2 },
+    [NombreROL2]: { style: "bold", sound: 2 },
+    [NombreROL3]: { style: "normal", sound: 1 },
+    [NombreROL4]: { style: "normal", sound: 1 },
+    [NombreROL5]: { style: "normal", sound: 1 },
+    [NombreROL6]: { style: "normal", sound: 1 },
+    [NombreROL7]: { style: "normal", sound: 1 },
+    [NombreROLAdmin]: { style: "normal", sound: 1 },
+    [NombreROLRed]: { style: "normal", sound: 1 },
+    [NombreROLBlue]: { style: "normal", sound: 1 },
+    [NombreROLSpect]: { style: "normal", sound: 0 }
+};
+
+
+//  ▇▇▇▇▇▇▇  COOLDOWN CHAT ▇▇▇▇▇▇▇
+
+let MESSAGE_COOLDOWN = 5000; // 5 segundos de cooldown
+let SPAM_LIMIT = 5; // Mensajes permitidos antes de activar el cooldown
+let COOLDOWN_TIME = 10000; // 10 segundos de cooldown después de enviar muchos mensajes
+let cooldownEnabled = true; // Cooldown habilitado por defecto
+let KICK_THRESHOLD = 7; // Número de advertencias antes de kickear por spam
+
+// Variables para rastrear mensajes y cooldowns
+let messageTimestamps = {};
+let playerCooldowns = {};
+let spamWarnings = {}; // Contador de advertencias por spam
+
+
+
+//  ▇▇▇▇▇▇▇  COOLDOWN PARA EL USO DE COMANDOS ▇▇▇▇▇▇▇
+// COOLDOWN PARA USO DE COMANDOS
+let lastCommandTime = {}; // Objeto para registrar el tiempo del último comando enviado por cada jugador
+const commandCooldown = 5000; // Tiempo de espera en milisegundos (5 segundos)
+
+// COOLDOWN PARA COMANDOS
+const cooldowns = {};
+const COOLDOWN_TIEMPO = 5 * 1000; // 5 segundos
+
+
+//  ▇▇▇▇▇▇▇ ⚽ PELOTAS ⚽ ▇▇▇▇▇▇▇
+
+var PelotaRS = "FFFFFF"			// COLOR DE LA PELOTA DE REAL SOCCER
+var PelotaRS_PowerShot = "FF4500"	// COLOR DE LA PELOTA DE REAL SOCCER con POWERSHOT ACTIVADO
+var PotenciaPowerShotRS = 2 //  Referencia: La potencia sin PowerShot es 0.5
+
+var PelotaFutsal = "FFFFFF"			// COLOR DE LA PELOTA DE REAL SOCCER
+var PelotaFutsal_PowerShot = "FF4500"	// COLOR DE LA PELOTA DE REAL SOCCER con POWERSHOT ACTIVADO
+var PotenciaPowerShot = 2.5  // Referencia: La Potencia sin PowerShot es 1.5
+var TipoPelotaFutsal = "oveja";  // Opciones: "bazinga", "oveja", "glh"
+
+
+
+
+
+// ▇▇▇▇▇▇▇  PARA TORNEOS  ▇▇▇▇▇▇▇
+
+var ChallongeLink = 'challonge.com/es/' // Link de tu torneo
+var regla1 = '⯌ 4 vs 4'
+var regla2 = '⯌ Equipo que gana el partido, continua jugando. 🏆'
+var regla3 = '⯌ Dos jugadores ingresan por orden de Espectadores. Los otros dos restantes, los puede elegir.'
+var regla4 = '⯌ El equipo ganador le toca el país con más probabilidades de ganar.'
+var regla5 = '⯌ Si empatan, salen ambos equipos. Y los primeros cuatro jugadores de la lista de Espectadores pasan a ser capitanes, 2 en el Team Red y los otros 2 en el Team Blue.'
+
+
+
+//  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  ADMINS NO OFICIALES ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+
+var kickBanAttempts = {}; // Objeto para rastrear intentos de kick y ban
+var maxAttempts = 1; // Número máximo de intentos permitidos en el intervalo de tiempo
+var interval = 30000; // Intervalo de tiempo en milisegundos (30 segundos)
+var alertThreshold = 2; // Umbral de alerta después del segundo intento
+var cooldownTime = 60000; // Tiempo de cooldown en milisegundos 
+var cooldownActive = {}; // Objeto para rastrear el estado de cooldown de cada administrador
+
+
+//  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  CONFIGURACIÓN AVANZADA 🚀 ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+
+// Define una variable global para llevar el seguimiento de los minutos jugados por cada jugador
+let playerMinutesPlayed = JSON.parse(localStorage.getItem('playerMinutesPlayed')) || {};
+
+// Define una variable global para llevar el seguimiento del tiempo que un jugador ha estado siendo el arquero
+let playerGoalkeeperTime = JSON.parse(localStorage.getItem('playerGoalkeeperTime')) || {};
+
+let jugadoresConEmojis = new Set();
+
+
+const reemplazosEmoji = {
+    "xd": "😂",
+    "lol": "🤣",
+    "gg": "👏 🅶🅶",
+    "ez": "𝗲𝘇 😎", 
+    "q": "𝗾 ❓", 
+    "no": "❌",
+    "ok": "✅",
+    "bien": "👌",
+    "gracias": "🙏",
+ 
+
+    "golazo": "⚽🥅 🔥", 
+    "gol": "⚽🥅",
+    "uf": "😱", 
+    "1": "🧤 1️⃣",
+    "2": "🛡 2️⃣",
+    "9": "⚽ 9️⃣",
+
+    "perdon": "😔",
+    "chau": "👋💨",
+    "hola": "👋😄",
+    "da": "𝗱𝗮 😤",
+    "x": "✖",
+    "cono": "🔺",
+    "ole": "𝗼𝗹𝗲𝗲𝗲 🥵🔥", 
+    "oso": "𝗼𝘀𝗼𝗼 🐻🤡", 
+
+    "-1": "➖1️⃣",
+    "-2": "➖2️⃣",
+    "-3": "➖3️⃣",
+    "-4": "➖4️⃣",
+    "-5": "➖5️⃣"
+};
+
+
+
+// ▇▇▇▇▇▇▇ ⚽👕 AÑADIR CAMISETAS DE EQUIPOS ⚽👕 ▇▇▇▇▇▇▇
+
+var camisetasEquipos = {
+
+};
+
+
+// ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ CÓDIGOS DE LAS BANDERAS ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+
+var codigosBanderas = {
+  Haxball: 'FAM',
+  Afghanistan: 'AF', 
+  Albania: 'AL', 
+  Algeria: 'DZ', 
+  Andorra: 'AD', 
+  Angola: 'AO', 
+  Anguilla: 'AI',
+  Antarctica: 'AQ',
+  AntiguaAndBarbuda: 'AG',
+  Argentina: 'AR',
+  Armenia: 'AM',
+  Aruba: 'AW',
+  Australia: 'AU',
+  Austria: 'AT',
+  Azerbaijan: 'AZ',
+  Bahamas: 'BS',
+  Bahrain: 'BH',
+  Bangladesh: 'BD',
+  Barbados: 'BB',
+  Belarus: 'BY',
+  Belgium: 'BE',
+  Belize: 'BZ',
+  Benin: 'BJ',
+  Bermuda: 'BM',
+  Bhutan: 'BT',
+  Bolivia: 'BO',
+  BonaireSaintEustatiusAndSaba: 'BQ',
+  BosniaAndHerzegovina: 'BA',
+  Botswana: 'BW',
+  BouvetIsland: 'BV',
+  Brazil: 'BR',
+  BritishIndianOceanTerritory: 'IO',
+  Brunei: 'BN',
+  Bulgaria: 'BG',
+  BurkinaFaso: 'BF',
+  Burundi: 'BI',
+  Cambodia: 'KH',
+  Cameroon: 'CM',
+  Canada: 'CA',
+  CapeVerde: 'CV',
+  CaymanIslands: 'KY',
+  CentralAfricanRepublic: 'CF',
+  Chad: 'TD',
+  Chile: 'CL',
+  China: 'CN',
+  ChristmasIsland: 'CX',
+  CocosKeelingIslands: 'CC',
+  Colombia: 'CO',
+  Comoros: 'KM',
+  Congo: 'CG',
+  CongoTheDemocraticRepublicOfThe: 'CD',
+  CookIslands: 'CK',
+  CostaRica: 'CR',
+  CoteDIvoire: 'CI',
+  Croatia: 'HR',
+  Cuba: 'CU',
+  Curacao: 'CW',
+  Cyprus: 'CY',
+  CzechRepublic: 'CZ',
+  Denmark: 'DK',
+  Djibouti: 'DJ',
+  Dominica: 'DM',
+  DominicanRepublic: 'DO',
+  Ecuador: 'EC',
+  Egypt: 'EG',
+  ElSalvador: 'SV',
+  EnglandUnitedKingdom: 'GB',
+  EquatorialGuinea: 'GQ',
+  Eritrea: 'ER',
+  Estonia: 'EE',
+  Ethiopia: 'ET',
+  FalklandIslandsMalvinas: 'FK',
+  FaroeIslands: 'FO',
+  Fiji: 'FJ',
+  Finland: 'FI',
+  France: 'FR',
+  FrenchPolynesia: 'PF',
+  FrenchSouthernTerritories: 'TF',
+  Gabon: 'GA',
+  Gambia: 'GM',
+  Georgia: 'GE',
+  Germany: 'DE',
+  Ghana: 'GH',
+  Gibraltar: 'GI',
+  GreatBritain: 'GB',
+  Greece: 'GR',
+  Greenland: 'GL',
+  Grenada: 'GD',
+  Guam: 'GU',
+  Guatemala: 'GT',
+  Guernsey: 'GG',
+  Guinea: 'GN',
+  GuineaBissau: 'GW',
+  Guyana: 'GY',
+  Haiti: 'HT',
+  HeardIslandAndMcDonaldIslands: 'HM',
+  HolySeeVaticanCityState: 'VA',
+  Honduras: 'HN',
+  HongKong: 'HK',
+  Hungary: 'HU',
+  Iceland: 'IS',
+  India: 'IN',
+  Indonesia: 'ID',
+  Iran: 'IR',
+  Iraq: 'IQ',
+  Ireland: 'IE',
+  IsleOfMan: 'IM',
+  Israel: 'IL',
+  Italy: 'IT',
+  Jamaica: 'JM',
+  Japan: 'JP',
+  Jersey: 'JE',
+  Jordan: 'JO',
+  Kazakhstan: 'KZ',
+  Kenya: 'KE',
+  Kiribati: 'KI',
+  KoreaDemocraticPeoplesRepublicOfNorthKorea: 'KP',
+  KoreaRepublicOfSouthKorea: 'KR',
+  Kosovo: 'XK',
+  Kuwait: 'KW',
+  Kyrgyzstan: 'KG',
+  LaoPeoplesDemocraticRepublic: 'LA',
+  Latvia: 'LV',
+  Lebanon: 'LB',
+  Lesotho: 'LS',
+  Liberia: 'LR',
+  LibyanArabJamahiriya: 'LY',
+  Liechtenstein: 'LI',
+  Lithuania: 'LT',
+  Luxembourg: 'LU',
+  Macao: 'MO',
+  MacedoniaTheFormerYugoslavRepublicOf: 'MK',
+  Madagascar: 'MG',
+  Malawi: 'MW',
+  Malaysia: 'MY',
+  Maldives: 'MV',
+  Mali: 'ML',
+  Malta: 'MT',
+  MarshallIslands: 'MH',
+  Mauritania: 'MR',
+  Mauritius: 'MU',
+  Mexico: 'MX',
+  MicronesiaFederatedStatesOf: 'FM',
+  MissingData: 'U9',
+  MoldovaRepublicOf: 'MD',
+  Monaco: 'MC',
+  Mongolia: 'MN',
+  Montenegro: 'ME',
+  Montserrat: 'MS',
+  Morocco: 'MA',
+  Mozambique: 'MZ',
+  Myanmar: 'MM',
+  Namibia: 'NA',
+  Nauru: 'NR',
+  Nepal: 'NP',
+  Netherlands: 'NL',
+  NetherlandsAntilles: 'AN',
+  NewCaledonia: 'NC',
+  NewZealand: 'NZ',
+  Nicaragua: 'NI',
+  Niger: 'NE',
+  Nigeria: 'NG',
+  Niue: 'NU',
+  NorfolkIsland: 'NF',
+  NorthernIrelandUnitedKingdom: 'GB',
+  NorthernMarianaIslands: 'MP',
+  Norway: 'NO',
+  Oman: 'OM',
+  Pakistan: 'PK',
+  Palau: 'PW',
+  PalestinianTerritoryOccupied: 'PS',
+  Panama: 'PA',
+  PapuaNewGuinea: 'PG',
+  Paraguay: 'PY',
+  Peru: 'PE',
+  Philippines: 'PH',
+  Pitcairn: 'PN',
+  Poland: 'PL',
+  Portugal: 'PT',
+  PuertoRico: 'PR',
+  Qatar: 'QA',
+  Romania: 'RO',
+  Russia: 'RU',
+  Rwanda: 'RW',
+  SaintLucia: 'LC',
+  Samoa: 'WS',
+  SanMarino: 'SM',
+  SaoTomeAndPrincipe: 'ST',
+  SaudiArabia: 'SA',
+  ScotlandUnitedKingdom: 'GB',
+  Senegal: 'SN',
+  Serbia: 'RS',
+  Seychelles: 'SC',
+  SierraLeone: 'SL',
+  Singapore: 'SG',
+  SintMaartenDutchPart: 'SX',
+  Slovakia: 'SK',
+  Slovenia: 'SI',
+  SolomonIslands: 'SB',
+  Somalia: 'SO',
+  SouthAfrica: 'ZA',
+  SouthGeorgiaAndTheSouthSandwichIslands: 'GS',
+  SouthSudan: 'SS',
+  Spain: 'ES',
+  SriLanka: 'LK',
+  StHelena: 'SH',
+  StKittsAndNevis: 'KN',
+  StVincentAndTheGrenadines: 'VC',
+  Sudan: 'SD',
+  Suriname: 'SR',
+  Swaziland: 'SZ',
+  Sweden: 'SE',
+  Switzerland: 'CH',
+  SyrianArabRepublic: 'SY',
+  Taiwan: 'TW',
+  Tajikistan: 'TJ',
+  Tanzania: 'TZ',
+  Thailand: 'TH',
+  TimorLeste: 'TL',
+  Togo: 'TG',
+  Tokelau: 'TK',
+  Tonga: 'TO',
+  TrinidadAndTobago: 'TT',
+  Tunisia: 'TN',
+  Turkey: 'TR',
+  Turkmenistan: 'TM',
+  TurksAndCaicosIslands: 'TC',
+  Tuvalu: 'TV',
+  Uganda: 'UG',
+  Ukraine: 'UA',
+  UnitedArabEmirates: 'AE',
+  UnitedKingdom: 'GB',
+  UnitedStates: 'US',
+  UnitedStatesMinorOutlyingIslands: 'UM',
+  Uruguay: 'UY',
+  Uzbekistan: 'UZ',
+  Vanuatu: 'VU',
+  Venezuela: 'VE',
+  VietNam: 'VN',
+  VirginIslandsBritish: 'VG',
+  VirginIslandsUS: 'VI',
+  Yemen: 'YE',
+  Zambia: 'ZM',
+  Zimbabwe: 'ZW'
+};
+
+var countryCoords = {
+    "argentina": [-34.6882652, -58.5685501], // Buenos Aires
+    "haxarg": [-34.61, -58.42], // HaxARG Ubication
+    "chile": [-33.45, -70.66], // Santiago
+    "uruguay": [-34.90, -56.19], // Montevideo
+    "brasil": [-23.55, -46.64], // São Paulo
+    "peru": [-12.04, -77.03], // Lima
+    "colombia": [4.61, -74.08], // Bogotá
+    "venezuela": [10.49, -66.88], // Caracas
+    "costa rica": [9.934739, -84.087502], // San José
+    "mexico": [19.43, -99.13], // Ciudad de México
+    "united states": [40.71, -74.01], // Nueva York
+    "marruecos": [33.57, -7.65], // Casablanca
+    "spain": [40.42, -3.70], // Madrid
+    "portugal": [38.71, -9.14], // Lisboa
+    "italy": [41.89, 12.49], // Milán
+    "united kingdom": [51.51, -0.13], // Londres
+    "germany": [52.52, 13.40], // Berlín
+    "turkey": [41.01, 28.97], // Estambul
+    "serbia": [44.8167494, 20.4654671], // Belgrado
+    "poland": [52.2298, 21.0118], // Varsovia
+    "ukraine": [50.45, 30.52], // Kiev
+    "russia": [55.75, 37.62], // Moscú
+    "china": [31.23, 121.47], // Shanghái
+    "south korea": [37.56, 126.97], // Seúl
+    "vietnam": [21.03, 105.85], // Hanói
+    "france": [48.86, 2.34], // París
+    "croatia": [45.8131406, 15.9772235], // Zagreb
+    "macedonia": [41.61, 21.74], // Skopie
+    "israel": [31.76, 35.21], // Tel Aviv (Israel)
+    "canada": [45.42, -75.69], // Ottawa (Canadá)
+    "bolivia": [-16.50, -68.12], // La Paz (Bolivia)
+    "paraguay": [-25.27, -57.67], // Asunción (Paraguay)
+    "honduras": [14.08, -87.21], // Tegucigalpa (Honduras)
+    "myubication": null,
+
+};

@@ -1,0 +1,65 @@
+//  ▇▇▇▇▇▇▇ 👤 ASIGNAR ROLES ▇▇▇▇▇▇▇
+
+
+// Definiciones de colores
+const ColorDelChatROL1 = 0xFFD700;
+const ColorDelChatROL2 = 0xFFFFFF;
+const ColorDelChatROL3 = 0xFFFFFF;
+const ColorDelChatROL4 = 0xFFFFFF;
+const ColorDelChatROL5 = 0xFFFFFF;
+const ColorDelChatROL6 = 0xFFFFFF;
+const ColorDelChatROL7 = 0xFFFFFF;
+const ColorDelChatROL8 = 0xffffff;
+const ColorDelChatROL9 = 0xffffff;
+const ColorDelChatROL10 = 0xffffff;
+const adminChatColor = 0xffdb72;
+const RedChatColor = 0xff8d8d;
+const BlueChatColor = 0x63f2ff;
+const RedTeamChatColor = 0xff5d5d;
+const BlueTeamChatColor = 0x18fde8;
+const SpectChatColor = 0xD3D3D3; // Color del chat para espectadores
+
+// Listas de nombres de usuario por rol
+const NickNamesRol1 = []; // Añadir nombres de usuarios para ROL1 entre comillas | EJEMPLO: const NickNamesRol1 = ["Messi", "Neymar"];
+const NickNamesRol2 = []; // Añadir nombres de usuarios para ROL2 entre comillas | EJEMPLO: const NickNamesRol2 = ["ROMAN #10", "Martín Palermo 9"];
+const NickNamesRol3 = []; // Añadir nombres de usuarios para ROL3 entre comillas | EJEMPLO: const NickNamesRol3 = ["Burrito Ortega"];
+const NickNamesRol4 = []; // Añadir nombres de usuarios para ROL4 entre comillas
+const NickNamesRol5 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol6 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol7 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol8 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol9 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol10 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+
+// Nombres de roles
+const NombreROL1 = "🗦👑🗧𝗢𝗪𝗡𝗘𝗥";
+const NombreROL2 = "🤝 CO-OWNER";
+const NombreROL3 = "🌐 HOSTER";
+const NombreROL4 = "🛠️ AYUDANTE";
+const NombreROL5 = "🔧 SUBAYUDANTE";
+const NombreROL6 = "🧉 COLABORADOR";
+const NombreROL7 = "💡 ASISTENTE";
+const NombreROL8 = "ROL 8";
+const NombreROL9 = "ROL 9";
+const NombreROL10 = "ROL 10";
+const NombreROLAdmin = "👑";
+const NombreROLRed = "🔴";
+const NombreROLBlue = "🔵";
+const NombreROLSpect = "👁️";
+
+const RoleAttributes = {
+    [NombreROL1]: { style: "bold", sound: 2 },
+    [NombreROL2]: { style: "bold", sound: 2 },
+    [NombreROL3]: { style: "normal", sound: 1 },
+    [NombreROL4]: { style: "normal", sound: 1 },
+    [NombreROL5]: { style: "normal", sound: 1 },
+    [NombreROL6]: { style: "normal", sound: 1 },
+    [NombreROL7]: { style: "normal", sound: 1 },
+    [NombreROL8]: { style: "normal", sound: 1 },
+    [NombreROL9]: { style: "normal", sound: 1 },
+    [NombreROL10]: { style: "normal", sound: 1 },
+    [NombreROLAdmin]: { style: "normal", sound: 1 },
+    [NombreROLRed]: { style: "normal", sound: 1 },
+    [NombreROLBlue]: { style: "normal", sound: 1 },
+    [NombreROLSpect]: { style: "normal", sound: 0 }
+};

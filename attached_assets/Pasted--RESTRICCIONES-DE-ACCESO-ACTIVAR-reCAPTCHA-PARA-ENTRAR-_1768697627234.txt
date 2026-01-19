@@ -1,0 +1,64 @@
+// ▇▇▇▇▇▇▇ 🚫 RESTRICCIONES DE ACCESO 🚫 ▇▇▇▇▇▇▇
+
+// 🤖 ACTIVAR reCAPTCHA PARA ENTRAR
+var ActivarReCaptcha = true;
+// true = Los jugadores deben resolver CAPTCHA (No soy un robot) para entrar
+// false = Los jugadores entran sin CAPTCHA
+
+
+
+
+// MÁXIMA CANTIDAD DE JUGADORES AFK PERMITIDOS
+const LimiteMaximoDeJugadoresAFK = 4; 
+// 🔒 Define el número máximo de jugadores AFK permitidos antes de activar la expulsión automática
+
+
+// 🚫 MAXIMO DE JUGADORES PERMITIDOS CON LA MISMA IP
+var MaximoJugadoresPorIp = 2;
+// Define el número máximo de jugadores permitidos con la misma IP
+
+
+// 🚫🌎 PAISES PROHIBIDOS
+const PaisesProhibidos = ["united states", "united kingdom"];
+// Si un jugador es de alguno de estos países, será expulsado automáticamente al ingresar.
+// EJEMPLO DE USO: const PaisesProhibidos = ["Argentina", "Brazil", "Chile"];
+ 
+
+// 🚫📶 IPS BANEADAS
+let IpPlayers = []; // Añade entre comillas las Ips de los jugadores que quieras prohibir su ingreso. EJEMPLO: let IpPlayers = ["123.456.789", "987.654.321"];
+
+var MensajeBaneoPorIp = "❌ El admin ha baneado tu IP 📶"
+
+
+// ❌📛 NICKNAMES PROHIBIDOS
+const NicknamesPROHIBIDOS = ["@everyone", "@here", "@"]; 
+// Lista de nicknames prohibidos
+// Define los nicknames que no pueden ser utilizados
+
+
+// ▇▇▇▇▇▇▇ LISTA DE JUGADORES REGISTRADOS ▇▇▇▇▇▇▇
+// auth = Public ID del jugador (se obtiene en: www.haxball.com/playerauth)
+// nicks = todos los nombres permitidos para el jugador
+
+var ListaDeJogadores = [
+  { auth: "authid_jugador1", nicks: ["Jugador1"] },
+  { auth: "authid_jugador2", nicks: ["Jugador2"] },
+  { auth: "authid_jugador3", nicks: ["Jugador3"] },
+  { auth: "authid_jugador4", nicks: ["Jugador4"] },
+  { auth: "authid_jugador5", nicks: ["Jugador5"] },
+  { auth: "authid_jugador6", nicks: ["Jugador6"] },
+  { auth: "authid_jugador7", nicks: ["Jugador7"] },
+  { auth: "authid_jugador8", nicks: ["Jugador8"] },
+  { auth: "authid_jugador9", nicks: ["Jugador9"] },
+  { auth: "authid_jugador10", nicks: ["Jugador10"] },
+  { auth: "authid_jugador11", nicks: ["Jugador11"] },
+  { auth: "authid_jugador12", nicks: ["Jugador12"] },
+  { auth: "authid_jugador13", nicks: ["Jugador13"] },
+  { auth: "authid_jugador14", nicks: ["Jugador14"] },
+  { auth: "authid_jugador15", nicks: ["Jugador15"] },
+  { auth: "authid_jugador16", nicks: ["Jugador16"] },
+  { auth: "authid_jugador17", nicks: ["Jugador17"] },
+  { auth: "authid_jugador18", nicks: ["Jugador18"] },
+  { auth: "authid_jugador19", nicks: ["Jugador19"] },
+  { auth: "authid_jugador20", nicks: ["Jugador20"] },
+];

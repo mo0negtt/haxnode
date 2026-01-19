@@ -1,0 +1,200 @@
+// ▇▇▇▇▇▇▇▇▇ 🌐👥 REDES SOCIALES ▇▇▇▇▇▇▇▇▇
+
+const DiscordLink = "discord.gg/tDEUbJU8QB";	// Link de tu Servidor de Discord
+const YoutubeLink = "youtube.com/@GrandesLigasHaxBall"; 	// Link de tu canal de Youtube
+const TwitchLink = "twitch.tv/stefano365p";	// Link de tu canal de Twitch
+
+
+// ▇▇▇▇▇▇▇ 📍 UBICACIÓN DEL HOST ▇▇▇▇▇▇▇
+
+	var UbicacionDelHost = "myubication"; 
+
+
+	// ES LA UBICACIÓN EN LA QUE APARECERÁ TU HOST | Puedes reemplazar "argentina" por alguna de estas opciones.
+
+
+	// OPCIONES DISPONIBLES:
+
+// TU GEOLOCALIZACIÓN POR DEFECTO: myubication
+
+		// AMÉRICA:
+
+			// argentina, haxarg, uruguay, brasil, colombia, chile, mexico
+
+			// bolivia, peru, paraguay, venezuela, costa rica, united states, canada
+
+		// EUROPA:
+
+			// france, spain, italy, germany, netherlands, portugal
+
+			// croatia, macedonia, serbia, poland, ukraine, russia, marruecos, united kingdom, turkey
+
+		
+		// ASIA:
+
+			// south korea, japan, china, vietnam, israel
+
+
+// ▇▇▇▇▇▇▇ BANDERA DEL HOST 🏳️ ▇▇▇▇▇▇▇
+
+
+	var BanderaDelHost = 'Germany';  // Elige el país con la bandera que quieres para tu Sala
+
+
+// OPCIONES DISPONIBLES POR CONTINENTE:
+
+// ÁFRICA:
+	// Algeria, Angola, Benin, Botswana, BurkinaFaso, Burundi, Cameroon, CapeVerde, CentralAfricanRepublic, Chad, Comoros,
+	// Congo, CongoTheDemocraticRepublicOfThe, CoteDIvoire, Djibouti, Egypt, EquatorialGuinea, Eritrea, Ethiopia, Gabon,
+	// Gambia, Ghana, Guinea, GuineaBissau, Kenya, Lesotho, Liberia, LibyanArabJamahiriya, Madagascar, Malawi, Mali, Mauritania,
+	// Mauritius, Morocco, Mozambique, Namibia, Niger, Nigeria, Rwanda, SaoTomeAndPrincipe, Senegal, Seychelles, SierraLeone,
+	// Somalia, SouthAfrica, SouthSudan, Sudan, Swaziland, Tanzania, Togo, Tunisia, Uganda, Zambia, Zimbabwe
+
+// AMÉRICA:
+	// AntiguaAndBarbuda, Argentina, Aruba, Bahamas, Barbados, Belize, Bermuda, Bolivia, BonaireSaintEustatiusAndSaba, Brazil,
+	// BritishIndianOceanTerritory, Canada, CaymanIslands, Chile, Colombia, CostaRica, Cuba, Curacao, Dominica, DominicanRepublic,
+	// Ecuador, ElSalvador, FalklandIslandsMalvinas, FrenchGuiana, Grenada, Guadeloupe, Guatemala, Guyana, Haiti, Honduras,
+	// Jamaica, Martinique, Mexico, Montserrat, Nicaragua, Panama, Paraguay, Peru, PuertoRico, SaintBarthelemy, SaintKittsAndNevis,
+	// SaintLucia, SaintMartin, SaintPierreAndMiquelon, SaintVincentAndTheGrenadines, SintMaartenDutchPart, Suriname, TrinidadAndTobago,
+	// TurksAndCaicosIslands, UnitedStates, UnitedStatesMinorOutlyingIslands, Uruguay, Venezuela, VirginIslandsBritish, VirginIslandsUS
+
+// ASIA:
+	// Afghanistan, Armenia, Azerbaijan, Bahrain, Bangladesh, Bhutan, Brunei, Cambodia, China, ChristmasIsland, CocosKeelingIslands,
+	// HongKong, India, Indonesia, Iran, Iraq, Israel, Japan, Jordan, Kazakhstan, Kuwait, Kyrgyzstan, LaoPeoplesDemocraticRepublic,
+	// Lebanon, Macao, Malaysia, Maldives, Mongolia, Myanmar, Nepal, NorthKorea, Oman, Pakistan, Palestine, Philippines, Qatar,
+	// SaudiArabia, Singapore, SouthKorea, SriLanka, Syria, Taiwan, Tajikistan, Thailand, TimorLeste, Turkey, Turkmenistan,
+	// UnitedArabEmirates, Uzbekistan, VietNam, Yemen
+
+// EUROPA:
+	// Albania, Andorra, Austria, Belarus, Belgium, BosniaAndHerzegovina, Bulgaria, Croatia, Cyprus, CzechRepublic, Denmark,
+	// Estonia, FaroeIslands, Finland, France, Germany, Gibraltar, Greece, Greenland, Hungary, Iceland, Ireland, Italy, Kosovo,
+	// Latvia, Liechtenstein, Lithuania, Luxembourg, MacedoniaTheFormerYugoslavRepublicOf, Malta, Moldova, Monaco, Montenegro,
+	// Netherlands, Norway, Poland, Portugal, Romania, Russia, SanMarino, Serbia, Slovakia, Slovenia, Spain, SvalbardAndJanMayen,
+	// Sweden, Switzerland, Ukraine, UnitedKingdom
+
+// OCEANÍA:
+	// Australia, Fiji, FrenchPolynesia, Guam, Kiribati, MarshallIslands, MicronesiaFederatedStatesOf, Nauru, NewCaledonia,
+	// NewZealand, Niue, NorfolkIsland, Palau, PapuaNewGuinea, Pitcairn, Samoa, SolomonIslands, Tokelau, Tonga, Tuvalu, Vanuatu
+
+// OTROS:
+	// Haxball, Antarctica, Anguilla, Antarctica, Bermuda, BouvetIsland, BritishIndianOceanTerritory, HeardIslandAndMcDonaldIslands,
+	// HolySeeVaticanCityState, IsleOfMan, Jersey, Mayotte, Monaco, Montserrat, SouthGeorgiaAndTheSouthSandwichIslands
+
+
+
+
+
+//  ▇▇▇▇▇▇▇ 👤 ASIGNAR ROLES ▇▇▇▇▇▇▇
+
+
+// Definiciones de colores
+const ColorDelChatROL1 = 0xFFD700;
+const ColorDelChatROL2 = 0xffffff;
+const ColorDelChatROL3 = 0xffffff;
+const ColorDelChatROL4 = 0xffffff;
+const ColorDelChatROL5 = 0xffffff;
+const ColorDelChatROL6 = 0xffffff;
+const ColorDelChatROL7 = 0xffffff;
+const adminChatColor = 0xffdb72;
+const RedChatColor = 0xff6363;
+const BlueChatColor = 0x63f2ff;
+const RedTeamChatColor = 0xFD2C2D;
+const BlueTeamChatColor = 0x18fde8;
+const SpectChatColor = 0xD3D3D3; // Color del chat para espectadores
+
+// Listas de nombres de usuario por rol
+const NickNamesRol1 = []; // Añadir nombres de usuarios para ROL1 entre comillas | EJEMPLO: const NickNamesRol1 = ["Messi", "Neymar"];
+const NickNamesRol2 = []; // Añadir nombres de usuarios para ROL2 entre comillas | EJEMPLO: const NickNamesRol2 = ["ROMAN #10", "Martín Palermo 9"];
+const NickNamesRol3 = []; // Añadir nombres de usuarios para ROL3 entre comillas | EJEMPLO: const NickNamesRol3 = ["Burrito Ortega"];
+const NickNamesRol4 = []; // Añadir nombres de usuarios para ROL4 entre comillas
+const NickNamesRol5 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol6 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+const NickNamesRol7 = []; // Añadir nombres de usuarios para ROL5 entre comillas
+
+// Nombres de roles
+const NombreROL1 = "🗦👑🗧𝗢𝗪𝗡𝗘𝗥";
+const NombreROL2 = "🤝 CO-OWNER";
+const NombreROL3 = "🌐 HOSTER";
+const NombreROL4 = "🛠️ AYUDANTE";
+const NombreROL5 = "🔧 SUBAYUDANTE";
+const NombreROL6 = "🧉 COLABORADOR";
+const NombreROL7 = "💡 ASISTENTE";
+const NombreROLAdmin = "👑 ADMIN";
+const NombreROLRed = "🔴";
+const NombreROLBlue = "🔵";
+const NombreROLSpect = "👁️";
+
+const RoleAttributes = {
+    [NombreROL1]: { style: "bold", sound: 2 },
+    [NombreROL2]: { style: "bold", sound: 2 },
+    [NombreROL3]: { style: "normal", sound: 1 },
+    [NombreROL4]: { style: "normal", sound: 1 },
+    [NombreROL5]: { style: "normal", sound: 1 },
+    [NombreROL6]: { style: "normal", sound: 1 },
+    [NombreROL7]: { style: "normal", sound: 1 },
+    [NombreROLAdmin]: { style: "normal", sound: 1 },
+    [NombreROLRed]: { style: "normal", sound: 1 },
+    [NombreROLBlue]: { style: "normal", sound: 1 },
+    [NombreROLSpect]: { style: "normal", sound: 0 }
+};
+
+
+//  ▇▇▇▇▇▇▇  COOLDOWN CHAT ▇▇▇▇▇▇▇
+
+let MESSAGE_COOLDOWN = 5000; // 5 segundos de cooldown
+let SPAM_LIMIT = 5; // Mensajes permitidos antes de activar el cooldown
+let COOLDOWN_TIME = 10000; // 10 segundos de cooldown después de enviar muchos mensajes
+let cooldownEnabled = true; // Cooldown habilitado por defecto
+let KICK_THRESHOLD = 7; // Número de advertencias antes de kickear por spam
+
+// Variables para rastrear mensajes y cooldowns
+let messageTimestamps = {};
+let playerCooldowns = {};
+let spamWarnings = {}; // Contador de advertencias por spam
+
+
+
+//  ▇▇▇▇▇▇▇  COOLDOWN PARA EL USO DE COMANDOS ▇▇▇▇▇▇▇
+// COOLDOWN PARA USO DE COMANDOS
+let lastCommandTime = {}; // Objeto para registrar el tiempo del último comando enviado por cada jugador
+const commandCooldown = 5000; // Tiempo de espera en milisegundos (5 segundos)
+
+// COOLDOWN PARA COMANDOS
+const cooldowns = {};
+const COOLDOWN_TIEMPO = 5 * 1000; // 5 segundos
+
+
+//  ▇▇▇▇▇▇▇ ⚽ PELOTAS ⚽ ▇▇▇▇▇▇▇
+
+var PelotaRS = "FFFFFF"			// COLOR DE LA PELOTA DE REAL SOCCER
+var PelotaRS_PowerShot = "FF4500"	// COLOR DE LA PELOTA DE REAL SOCCER con POWERSHOT ACTIVADO
+var PotenciaPowerShotRS = 2 //  Referencia: La potencia sin PowerShot es 0.5
+
+var PelotaFutsal = "FFFFFF"			// COLOR DE LA PELOTA DE REAL SOCCER
+var PelotaFutsal_PowerShot = "FF4500"	// COLOR DE LA PELOTA DE REAL SOCCER con POWERSHOT ACTIVADO
+var PotenciaPowerShot = 2.5  // Referencia: La Potencia sin PowerShot es 1.5
+var TipoPelotaFutsal = "oveja";  // Opciones: "bazinga", "oveja", "glh"
+
+
+
+
+
+// ▇▇▇▇▇▇▇  PARA TORNEOS  ▇▇▇▇▇▇▇
+
+var ChallongeLink = 'challonge.com/es/' // Link de tu torneo
+var regla1 = '⯌ 4 vs 4'
+var regla2 = '⯌ Equipo que gana el partido, continua jugando. 🏆'
+var regla3 = '⯌ Dos jugadores ingresan por orden de Espectadores. Los otros dos restantes, los puede elegir.'
+var regla4 = '⯌ El equipo ganador le toca el país con más probabilidades de ganar.'
+var regla5 = '⯌ Si empatan, salen ambos equipos. Y los primeros cuatro jugadores de la lista de Espectadores pasan a ser capitanes, 2 en el Team Red y los otros 2 en el Team Blue.'
+
+
+
+//  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  ADMINS NO OFICIALES ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+
+var kickBanAttempts = {}; // Objeto para rastrear intentos de kick y ban
+var maxAttempts = 1; // Número máximo de intentos permitidos en el intervalo de tiempo
+var interval = 30000; // Intervalo de tiempo en milisegundos (30 segundos)
+var alertThreshold = 2; // Umbral de alerta después del segundo intento
+var cooldownTime = 60000; // Tiempo de cooldown en milisegundos 
+var cooldownActive = {}; // Objeto para rastrear el estado de cooldown de cada administrador
