@@ -1,6 +1,7 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
+import path from "path";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -33,17 +34,14 @@ const allowlist = [
 ];
 
 async function buildAll() {
-  // Solo eliminamos dist al inicio para una limpieza completa una vez
+  const distPath = path.resolve(process.cwd(), "dist_client");
   await rm("dist", { recursive: true, force: true });
+  await rm(distPath, { recursive: true, force: true });
 
   console.log("building client...");
-  // Vite usará la configuración de outDir si pudiera editarse, 
-  // pero como no puedo, forzaré el outDir aquí si es posible a través de la API de build de vite.
-  // Sin embargo, viteBuild() sin argumentos usa vite.config.ts.
-  // Intentaré pasarle la configuración directamente.
   await viteBuild({
     build: {
-      outDir: "dist/public",
+      outDir: distPath,
       emptyOutDir: true,
     }
   });
