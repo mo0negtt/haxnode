@@ -9,7 +9,7 @@
 <img width="1312" height="683" alt="HaxNode-3" src="https://github.com/user-attachments/assets/118dfdf6-0973-465a-89ee-5b5996db4b66" />
 
 ## 🪄 HaxNode
-**HaxPuck** HaxNode es un editor de codigo basado en nodes (lenguaje visual) inspirado en el lenguaje de nodes de Unreal Engine 5.
+**HaxNode** HaxNode es un editor de codigo basado en nodes (lenguaje visual) inspirado en el lenguaje de nodes de Unreal Engine 5.
 
 * **Interface:** Diseño intuitivo para usuarios nuevos en la creacion de `scripts`.
 
